@@ -1,0 +1,297 @@
+.home {
+  padding: var(--space-md) var(--space-md) var(--space-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+}
+
+/* ── Header ── */
+.home__header {
+  text-align: center;
+  padding-top: var(--space-lg);
+}
+
+.home__weekday {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-sm);
+}
+
+.home__title {
+  font-family: var(--font-serif);
+  font-size: clamp(30px, 9vw, 38px);
+  font-weight: 500;
+  color: var(--color-text);
+  line-height: 1.08;
+  letter-spacing: -0.01em;
+  margin-bottom: 8px;
+}
+
+.home__subtitle {
+  font-family: var(--font-serif);
+  font-size: 15px;
+  font-style: italic;
+  color: var(--color-text-muted);
+  font-weight: 400;
+}
+
+/* ── Liturgy strip — quiet text, no container ── */
+.liturgy-strip {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  padding: 0 2px;
+}
+
+.liturgy-strip__eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.liturgy-strip__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-text-muted);
+  flex-shrink: 0;
+  opacity: 0.5;
+}
+
+.liturgy-strip__label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.liturgy-strip__title {
+  font-family: var(--font-serif);
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--color-text);
+  line-height: 1.3;
+  letter-spacing: -0.005em;
+}
+
+.liturgy-strip__title--plain {
+  color: var(--color-text-secondary);
+  font-style: italic;
+}
+
+.liturgy-strip__meta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  flex-wrap: wrap;
+}
+
+.liturgy-strip__week,
+.liturgy-strip__season,
+.liturgy-strip__rank {
+  font-size: 12px;
+  color: var(--color-text-muted);
+  font-weight: 400;
+}
+
+/* Loading shimmer */
+.liturgy-strip--loading { gap: var(--space-sm); }
+
+.liturgy-strip__shimmer {
+  height: 13px;
+  border-radius: 6px;
+  background: linear-gradient(
+    90deg,
+    rgba(0,0,0,0.05) 25%,
+    rgba(255,255,255,0.40) 50%,
+    rgba(0,0,0,0.05) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.6s ease infinite;
+  width: 68%;
+}
+
+.liturgy-strip__shimmer--short { width: 38%; height: 10px; }
+
+@keyframes shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* ── Today's Mass — editorial, no card ── */
+.home__mass {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.home__mass-eyebrow {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  margin-bottom: 4px;
+}
+
+.home__mass-title {
+  font-family: var(--font-serif);
+  font-size: clamp(22px, 6.5vw, 26px);
+  font-weight: 500;
+  color: var(--color-text);
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+.home__mass-rite {
+  font-size: 13px;
+  color: var(--color-text-secondary);
+  font-weight: 400;
+}
+
+.home__mass-date {
+  font-size: 12px;
+  color: var(--color-text-muted);
+}
+
+/* Language pair */
+.home__lang-pair {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  margin: var(--space-sm) 0;
+}
+
+.home__lang-chip {
+  font-size: 12px;
+  font-weight: 600;
+  padding: 6px 14px;
+  border-radius: 100px;
+  letter-spacing: 0.03em;
+  transition: background var(--duration-fast) var(--ease-glass);
+}
+
+.home__lang-chip--primary {
+  background: var(--color-text);
+  color: #f6f5f1;
+}
+
+.home__lang-chip--secondary {
+  background: var(--glass-1);
+  backdrop-filter: var(--blur-panel);
+  -webkit-backdrop-filter: var(--blur-panel);
+  border: 1px solid var(--glass-border);
+  color: var(--color-text-secondary);
+}
+
+.home__lang-arrow {
+  font-size: 13px;
+  color: var(--color-text-muted);
+  opacity: 0.6;
+}
+
+/* CTA — solid black, premium */
+.home__cta {
+  margin-top: var(--space-sm);
+  width: 100%;
+  padding: 16px var(--space-lg);
+  background: var(--color-text);
+  color: #f6f5f1;
+  border-radius: var(--radius-lg);
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  font-family: var(--font-sans);
+  min-height: 54px;
+  transition: opacity var(--duration-fast) var(--ease-glass),
+              transform var(--duration-fast) var(--ease-glass);
+}
+
+.home__cta:active {
+  opacity: 0.70;
+  transform: scale(0.985);
+}
+
+/* ── Jump to Section — frosted glass chips ── */
+.home__sections {
+  padding-bottom: var(--space-md);
+}
+
+.home__sections-label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-md);
+}
+
+.home__sections-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+/* Each section is a floating frosted glass chip */
+.home__section-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: 16px 18px;
+  background: var(--glass-1);
+  backdrop-filter: var(--blur-panel);
+  -webkit-backdrop-filter: var(--blur-panel);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  box-shadow:
+    0 2px 16px rgba(0, 0, 0, 0.04),
+    0 1px 3px rgba(0, 0, 0, 0.03),
+    var(--glass-inner);
+  text-align: left;
+  transition:
+    background var(--duration-fast) var(--ease-glass),
+    transform var(--duration-fast) var(--ease-glass),
+    box-shadow var(--duration-fast) var(--ease-glass);
+}
+
+.home__section-btn:active {
+  background: var(--glass-2);
+  transform: scale(0.985);
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.03), var(--glass-inner);
+}
+
+.home__section-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-text-muted);
+  opacity: 0.4;
+  flex-shrink: 0;
+}
+
+.home__section-name {
+  font-size: 15px;
+  font-weight: 450;
+  color: var(--color-text);
+  flex: 1;
+  letter-spacing: -0.005em;
+}
+
+.home__section-name-ko {
+  font-size: 13px;
+  color: var(--color-text-muted);
+  font-weight: 400;
+}
+
+.home__section-chevron {
+  font-size: 16px;
+  color: var(--color-text-muted);
+  opacity: 0.5;
+  margin-left: 2px;
+}

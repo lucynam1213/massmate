@@ -1,0 +1,196 @@
+/* Reading block — transparent within the glass panel */
+.text-block {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-sm);
+  width: 100%;
+  text-align: left;
+  padding: 20px 20px;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--color-separator);
+  cursor: pointer;
+  transition:
+    background var(--duration-fast) var(--ease-glass),
+    opacity var(--duration-mid) var(--ease-glass);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.text-block:last-child {
+  border-bottom: none;
+}
+
+.text-block:active {
+  background: rgba(0, 0, 0, 0.025);
+}
+
+/* Active — elevated surface within the glass panel.
+   No inner backdrop-filter: parent panel already composites the blur.
+   Adding it here forces a second compositing layer unnecessarily. */
+.text-block--active {
+  background: var(--glass-2);
+}
+
+.text-block--active:active {
+  background: var(--glass-2);
+  opacity: 0.85;
+}
+
+/* Placeholder — not tappable */
+.text-block--placeholder {
+  cursor: default;
+  opacity: 0.42;
+  border-style: dashed;
+  border-color: var(--color-border-strong);
+  border-bottom: 1px dashed var(--color-border-strong);
+  background: transparent;
+}
+
+.text-block--placeholder:active {
+  background: transparent;
+}
+
+.text-block__placeholder-text {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 14px;
+  color: var(--color-text-secondary);
+  padding: 2px 0;
+  font-weight: 400;
+}
+
+/* ── Speaker icon ── */
+.text-block__icon {
+  flex-shrink: 0;
+  margin-top: 4px;
+  color: var(--color-text-muted);
+  opacity: 0.45;
+  transition: opacity var(--duration-fast) var(--ease-glass);
+}
+
+.text-block--active .text-block__icon { opacity: 0.65; }
+
+.text-block__icon--priest  { opacity: 0.65; }
+.text-block__icon--all     { opacity: 0.65; }
+.text-block__icon--people  { opacity: 0.55; }
+.text-block__icon--cantor  { opacity: 0.60; }
+.text-block__icon--reader  { opacity: 0.38; }
+.text-block__icon--placeholder { opacity: 0.30; }
+
+/* ── Body ── */
+.text-block__body {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+/* Lang badge */
+.text-block__lang {
+  display: inline-block;
+  align-self: flex-start;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.10em;
+  border-radius: 4px;
+  padding: 2px 6px;
+  background: transparent;
+  color: var(--color-text-muted);
+  border: 1px solid var(--color-border-strong);
+  transition:
+    background var(--duration-fast) var(--ease-glass),
+    color var(--duration-fast) var(--ease-glass),
+    border-color var(--duration-fast) var(--ease-glass);
+}
+
+/* Active lang badge — solid black */
+.text-block__lang--on {
+  background: var(--color-text);
+  color: #f6f5f1;
+  border-color: var(--color-text);
+}
+
+/* Text */
+.text-block__text {
+  font-family: var(--font-serif);
+  line-height: 1.88;
+  color: var(--color-text);
+  font-weight: 400;
+  letter-spacing: 0.008em;
+  transition: color var(--duration-fast) var(--ease-glass);
+}
+
+.text-block--active .text-block__text {
+  font-style: italic;
+  animation: mm-text-reveal 0.24s var(--ease-glass) both;
+}
+
+@keyframes mm-text-reveal {
+  from { opacity: 0.3; transform: translateY(3px); }
+  to   { opacity: 1;   transform: translateY(0);   }
+}
+
+/* Font sizes */
+.text-block--font-small  .text-block__text { font-size: 14px; }
+.text-block--font-medium .text-block__text { font-size: 17px; }
+.text-block--font-large  .text-block__text { font-size: 20px; }
+
+/* Daily dot — monochrome */
+.text-block__daily-dot {
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--color-text-muted);
+  opacity: 0.45;
+  align-self: flex-start;
+  margin-top: 3px;
+}
+
+/* ── Narrator / rubric / instruction block ── */
+.text-block--narrator {
+  padding: 5px 20px;
+  cursor: default;
+  border-bottom: none;
+  opacity: 0.48;
+  transition: opacity var(--duration-mid) var(--ease-glass);
+}
+
+.text-block--narrator:active {
+  background: transparent;
+}
+
+.text-block--narrator .text-block__icon {
+  opacity: 0.22;
+  margin-top: 1px;
+}
+
+.text-block--narrator .text-block__text {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--color-text-muted);
+  line-height: 1.5;
+  letter-spacing: 0.01em;
+}
+
+/* Narrator font size is fixed — immune to user font-size preference */
+.text-block--narrator.text-block--font-small .text-block__text,
+.text-block--narrator.text-block--font-medium .text-block__text,
+.text-block--narrator.text-block--font-large .text-block__text {
+  font-size: 11px;
+}
+
+/* ── Sibling dimming — fade inactive blocks when any is translated ── */
+@supports selector(:has(*)) {
+  .subsection__cards:has(.text-block--active) .text-block:not(.text-block--active) {
+    opacity: 0.38;
+  }
+
+  /* Narrator dims even further — it recedes completely when prayer is active */
+  .subsection__cards:has(.text-block--active) .text-block--narrator {
+    opacity: 0.16;
+  }
+}

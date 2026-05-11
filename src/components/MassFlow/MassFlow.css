@@ -1,0 +1,305 @@
+/* ── Mass flow — atmospheric reading environment ── */
+.mass-flow {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  /* Subtle top-light glow for the reading environment */
+  background:
+    radial-gradient(ellipse 180% 50% at 50% -5%, rgba(255,255,255,0.75) 0%, transparent 60%),
+    transparent;
+}
+
+/* ── Sticky mini-nav — strong glass float ── */
+.mass-nav {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  height: 52px;
+  padding: 0 var(--space-sm) 0 var(--space-xs);
+  background: var(--glass-3);
+  backdrop-filter: var(--blur-nav);
+  -webkit-backdrop-filter: var(--blur-nav);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.65);
+}
+
+
+.mass-nav__back {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-sm);
+  color: var(--color-text-secondary);
+  flex-shrink: 0;
+  transition: background var(--duration-fast) var(--ease-glass);
+}
+
+.mass-nav__back:active { background: rgba(0, 0, 0, 0.05); }
+
+.mass-nav__tabs {
+  flex: 1;
+  display: flex;
+  gap: 5px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  min-width: 0;
+}
+
+.mass-nav__tabs::-webkit-scrollbar { display: none; }
+
+.mass-nav__tab {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 5px 9px;
+  border-radius: 999px;
+  border: 1px solid var(--color-border);
+  background: transparent;
+  min-height: 32px;
+  transition:
+    background var(--duration-fast) var(--ease-glass),
+    border-color var(--duration-fast) var(--ease-glass);
+}
+
+.mass-nav__tab-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--color-text-muted);
+  opacity: 0.5;
+  flex-shrink: 0;
+  transition: opacity var(--duration-fast) var(--ease-glass),
+              background var(--duration-fast) var(--ease-glass);
+}
+
+.mass-nav__tab-label {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--color-text-muted);
+  white-space: nowrap;
+  letter-spacing: 0.01em;
+  transition: color var(--duration-fast) var(--ease-glass),
+              font-weight var(--duration-fast) var(--ease-glass);
+}
+
+/* Active tab — monochrome emphasis */
+.mass-nav__tab--active {
+  background: rgba(0, 0, 0, 0.06);
+  border-color: rgba(0, 0, 0, 0.10);
+}
+
+
+.mass-nav__tab--active .mass-nav__tab-dot {
+  background: var(--color-text);
+  opacity: 0.75;
+}
+
+.mass-nav__tab--active .mass-nav__tab-label {
+  color: var(--color-text);
+  font-weight: 600;
+}
+
+.mass-nav__focus-btn {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-sm);
+  color: var(--color-text-muted);
+  flex-shrink: 0;
+  transition: background var(--duration-fast) var(--ease-glass),
+              color var(--duration-fast) var(--ease-glass);
+}
+
+.mass-nav__focus-btn:active { background: rgba(0, 0, 0, 0.05); }
+
+.mass-nav__focus-btn--on { color: var(--color-text); }
+
+/* ── Section strip — whisper quiet ── */
+.mass-flow__section-strip {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: 10px var(--space-md);
+}
+
+.mass-flow__section-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-text-muted);
+  opacity: 0.35;
+  flex-shrink: 0;
+}
+
+.mass-flow__section-name {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  letter-spacing: 0.01em;
+}
+
+.mass-flow__section-name-ko {
+  font-size: 11px;
+  color: var(--color-text-muted);
+}
+
+/* ── Body — reading scroll ── */
+.mass-flow__body {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  padding: var(--space-md) var(--space-md) var(--space-2xl);
+}
+
+/* ── Section block ── */
+.section-block {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+  padding-top: var(--space-xl);
+  transition: opacity var(--duration-mid) var(--ease-glass);
+  /* CSS rendering containment — allows browser to skip off-screen section layout */
+  content-visibility: auto;
+  contain-intrinsic-block-size: auto 600px;
+}
+
+/* Focus mode — fade non-current */
+.mass-flow--focus .section-block          { opacity: 0.15; }
+.mass-flow--focus .section-block--current { opacity: 1;    }
+
+/* ── Ceremonial section header — liturgical page divider ── */
+.section-block__header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: var(--space-md) var(--space-md) var(--space-sm);
+  text-align: center;
+}
+
+.section-block__rule {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--color-border-strong) 30%,
+    var(--color-border-strong) 70%,
+    transparent 100%
+  );
+  opacity: 0.45;
+}
+
+.section-block__title {
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  opacity: 0.75;
+}
+
+.section-block__title-ko {
+  font-size: 10px;
+  color: var(--color-text-muted);
+  font-style: italic;
+  font-weight: 400;
+  opacity: 0.55;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+/* ── Subsection ── */
+.subsection {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.subsection__header {
+  padding: 0 4px;
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-sm);
+}
+
+.subsection__name {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  opacity: 0.75;
+}
+
+.subsection__name-ko {
+  font-size: 10px;
+  color: var(--color-text-muted);
+  font-style: italic;
+  opacity: 0.65;
+}
+
+/* The glass reading panel — core of the depth system */
+.subsection__cards {
+  background: var(--glass-1);
+  backdrop-filter: var(--blur-panel);
+  -webkit-backdrop-filter: var(--blur-panel);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--glass-border);
+  overflow: hidden;
+  box-shadow:
+    0 4px 28px rgba(0, 0, 0, 0.04),
+    0 1px 6px rgba(0, 0, 0, 0.03),
+    var(--glass-inner);
+  /* Entrance float */
+  animation: panelFloat 0.4s var(--ease-glass) both;
+}
+
+
+@keyframes panelFloat {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ── End of Mass ── */
+.mass-end {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-2xl) var(--space-md);
+  opacity: 0.38;
+}
+
+.mass-end__cross {
+  font-size: 22px;
+  color: var(--color-text);
+}
+
+.mass-end__text {
+  font-family: var(--font-serif);
+  font-size: 14px;
+  color: var(--color-text-secondary);
+  font-weight: 400;
+}
+
+.mass-end__text-ko {
+  font-size: 12px;
+  color: var(--color-text-muted);
+  font-style: italic;
+}
