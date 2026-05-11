@@ -3,6 +3,7 @@ import react from '@vitejs/plugin-react'
 
 export default defineConfig({
   plugins: [react()],
+  base: '/massmate/',
 
   build: {
     // Target modern iOS Safari 15+ and Chrome 91+ (Capacitor minimum)
