@@ -53,27 +53,30 @@
  * ─────────────────────────────────────────────────────────────────────────────
  */
 
-import { SECTIONS, massData } from '../data/massData'
+import { SECTIONS }           from '../data/massData'
+import { ALL_FIXED_TEXTS }    from '../data/fixedLiturgy'
+import { fetchDailyReadings } from '../data/dailyReadings'
 
 // ─── Public API ───────────────────────────────────────────────────────────────
 
 /**
- * Fetch today's Mass data.
- * Returns a Promise so callers are already written for async API replacement.
+ * Fetch today's Mass data — fixed Ordinary text (static) + daily Proper
+ * readings (live-fetched, falls back to mock offline).
  *
  * @param {Date} [date=new Date()]
  * @returns {Promise<MassPayload>}
  */
 export async function fetchTodayMass(date = new Date()) {
-  // TODO: replace massData with separate fixed + async daily fetch (see above)
+  const daily = await fetchDailyReadings(date)
+  const texts = [...ALL_FIXED_TEXTS, ...daily].sort((a, b) => a.order - b.order)
 
   return {
     date:     date.toISOString().split('T')[0],
-    title:    'Sunday Mass',              // TODO: derive from liturgical calendar
+    title:    date.getDay() === 0 ? 'Sunday Mass' : 'Weekday Mass',
     rite:     'Roman Rite · Ordinary Form',
-    season:   'Ordinary Time',           // TODO: derive from liturgical calendar
+    season:   'Ordinary Time',           // TODO: derive from liturgical calendar (see useLiturgy)
     sections: SECTIONS,
-    texts:    massData,
+    texts,
   }
 }
 
