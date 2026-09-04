@@ -4,6 +4,7 @@ import { useMassData } from './hooks/useMassData'
 import { useLiturgy } from './hooks/useLiturgy'
 import Home from './components/Home/Home'
 import MassFlow from './components/MassFlow/MassFlow'
+import Legio from './components/Legio/Legio'
 import Settings from './components/Settings/Settings'
 import BottomNav from './components/shared/BottomNav/BottomNav'
 import './styles/global.css'
@@ -70,6 +71,10 @@ export default function App() {
                 updateSetting={updateSetting}
               />
             }
+          />
+          <Route
+            path="/legio/:sectionId?"
+            element={<Legio settings={settings} updateSetting={updateSetting} />}
           />
           <Route
             path="/settings"

@@ -22,6 +22,16 @@ const NAV_ITEMS = [
     ),
   },
   {
+    to: '/legio',
+    label: 'Legio',
+    icon: (active) => (
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={active ? 2.2 : 1.8} strokeLinecap="round" strokeLinejoin="round">
+        <circle cx="12" cy="12" r="9" />
+        <path d="M12 7v10M8 9.5c1.5 1 2.5 1 4 0s2.5-1 4 0M8 14.5c1.5-1 2.5-1 4 0s2.5 1 4 0" />
+      </svg>
+    ),
+  },
+  {
     to: '/settings',
     label: 'Settings',
     icon: (active) => (
