@@ -1,14 +1,15 @@
 import { useState, useEffect, useRef, useCallback, useMemo } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import TextBlock from '../shared/TextBlock/TextBlock'
-import { LEGIO_SECTIONS, TESSERA_TEXTS } from '../../data/legio/tessera'
+import { LEGIO_SECTIONS, MYSTERY_GROUPS, TESSERA_TEXTS } from '../../data/legio/tessera'
 import '../MassFlow/MassFlow.css'
+import './Legio.css'
 
 const STICKY_NAV_H = 52
 
 function groupBySubsection(texts, sectionId) {
   const filtered = texts
-    .filter((t) => t.section === sectionId)
+    .filter((t) => t.section === sectionId && !t.mysteryGroup)
     .sort((a, b) => a.order - b.order)
   const map = new Map()
   for (const item of filtered) {
@@ -37,6 +38,15 @@ export default function Legio({ settings, updateSetting }) {
 
   const [activeBlockId, setActiveBlockId]     = useState(null)
   const [activeSectionId, setActiveSectionId] = useState(sections[0].id)
+  const [selectedMystery, setSelectedMystery] = useState(MYSTERY_GROUPS[0].id)
+
+  const mysteryItems = useMemo(() =>
+    texts
+      .filter((t) => t.section === 'rosary' && t.mysteryGroup === selectedMystery)
+      .sort((a, b) => a.order - b.order),
+    [texts, selectedMystery]
+  )
+  const activeMystery = MYSTERY_GROUPS.find((m) => m.id === selectedMystery)
 
   const sectionRefs      = useRef({})
   const containerRef     = useRef(null)
@@ -189,6 +199,39 @@ export default function Legio({ settings, updateSetting }) {
               <p className="section-block__title-ko">{section.labelKo}</p>
               <div className="section-block__rule" aria-hidden="true" />
             </header>
+
+            {section.id === 'rosary' && (
+              <div className="subsection mystery-picker">
+                <div className="mystery-picker__tabs" role="tablist" aria-label="Rosary mysteries">
+                  {MYSTERY_GROUPS.map((m) => (
+                    <button
+                      key={m.id}
+                      role="tab"
+                      aria-selected={selectedMystery === m.id}
+                      className={`mystery-picker__tab${selectedMystery === m.id ? ' mystery-picker__tab--active' : ''}`}
+                      onClick={() => setSelectedMystery(m.id)}
+                    >
+                      {m.labelKo}
+                    </button>
+                  ))}
+                </div>
+                <div className="subsection__header">
+                  <p className="subsection__name">{activeMystery.label} Mysteries</p>
+                  <p className="subsection__name-ko">{activeMystery.labelKo}의 신비 — {activeMystery.daysKo}</p>
+                </div>
+                <div className="subsection__cards">
+                  {mysteryItems.map((item) => (
+                    <TextBlock
+                      key={item.id}
+                      item={item}
+                      settings={textSettings}
+                      isActive={activeBlockId === item.id}
+                      onTap={handleBlockTap}
+                    />
+                  ))}
+                </div>
+              </div>
+            )}
 
             {section.subsections.map((sub) => (
               <div key={sub.name} className="subsection">

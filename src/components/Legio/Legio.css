@@ -1,0 +1,29 @@
+.mystery-picker__tabs {
+  display: flex;
+  gap: var(--space-sm);
+  padding: 0 var(--space-md) var(--space-sm);
+  overflow-x: auto;
+}
+
+.mystery-picker__tab {
+  flex: 1;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 8px 4px;
+  border-radius: 100px;
+  letter-spacing: 0.02em;
+  text-align: center;
+  white-space: nowrap;
+  background: var(--glass-1);
+  backdrop-filter: var(--blur-panel);
+  -webkit-backdrop-filter: var(--blur-panel);
+  border: 1px solid var(--glass-border);
+  color: var(--color-text-secondary);
+  transition: background var(--duration-fast) var(--ease-glass), color var(--duration-fast) var(--ease-glass);
+}
+
+.mystery-picker__tab--active {
+  background: var(--color-text);
+  color: #f6f5f1;
+  border-color: transparent;
+}
