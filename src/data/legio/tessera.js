@@ -349,10 +349,6 @@ export const TESSERA_TEXTS = [
     korean: '처음과 같이 이제와 항상 영원히. 아멘.',
     sourceStatus: 'verified' },
 
-  { id: 'cat-ant-2', section: 'catena', subsection: 'Antiphon', subsectionKo: '후렴', speaker: 'choir', iconType: 'choir', order: order(),
-    english: 'Who is she that comes forth as the morning rising, fair as the moon, bright as the sun, terrible as an army set in battle array?',
-    korean: '먼동이 트이듯 나타나고, 달과 같이 아름답고, 해와 같이 빛나며, 진을 친 군대처럼 두려운 저 여인은 누구실까?',
-    sourceStatus: 'verified' },
   { id: 'cat-mary-v', section: 'catena', subsection: 'Versicle', subsectionKo: '초대송', speaker: 'priest', iconType: 'cross', order: order(),
     english: 'O Mary, conceived without sin.',
     korean: '원죄 없이 잉태되신 마리아님,',
@@ -373,10 +369,6 @@ export const TESSERA_TEXTS = [
   // CONCLUDING PRAYERS / 마침 기도
   // ═══════════════════════════════════════════════════════════════════════
 
-  { id: 'cl-cross', section: 'closing', subsection: 'Sign of the Cross', subsectionKo: '성호경', speaker: 'all', iconType: 'combined', order: order(),
-    english: 'In the name of the Father, and of the Son, and of the Holy Spirit. Amen.',
-    korean: '성부와 성자와 성령의 이름으로, 아멘.',
-    sourceStatus: 'verified' },
   { id: 'cl-subtuum', section: 'closing', subsection: 'Sub Tuum Praesidium', subsectionKo: '주의 보호',
     speaker: 'all', iconType: 'combined', order: order(),
     english: 'We fly to your patronage, O holy Mother of God; despise not our prayers in our necessities, but ever deliver us from all dangers, O glorious and blessed Virgin.',
