@@ -351,7 +351,7 @@ export const TESSERA_TEXTS = [
     korean: '처음과 같이 이제와 항상 영원히. 아멘.',
     sourceStatus: 'verified' },
 
-  { id: 'cat-ant-2', section: 'catena', subsection: 'Antiphon', subsectionKo: '후렴', speaker: 'choir', iconType: 'choir', order: order(),
+  { id: 'cat-ant-2', section: 'catena', subsection: 'The Magnificat', subsectionKo: '마니피캇', speaker: 'choir', iconType: 'choir', order: order(),
     english: 'Who is she that comes forth as the morning rising, fair as the moon, bright as the sun, terrible as an army set in battle array?',
     korean: '먼동이 트이듯 나타나고, 달과 같이 아름답고, 해와 같이 빛나며, 진을 친 군대처럼 두려운 저 여인은 누구실까?',
     sourceStatus: 'verified' },
