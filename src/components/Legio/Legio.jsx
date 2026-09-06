@@ -211,7 +211,7 @@ export default function Legio({ settings, updateSetting }) {
                       className={`mystery-picker__tab${selectedMystery === m.id ? ' mystery-picker__tab--active' : ''}`}
                       onClick={() => setSelectedMystery(m.id)}
                     >
-                      {m.labelKo}
+                      {m.label}
                     </button>
                   ))}
                 </div>

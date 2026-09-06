@@ -26,8 +26,10 @@ const NAV_ITEMS = [
     label: 'Legio',
     icon: (active) => (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={active ? 2.2 : 1.8} strokeLinecap="round" strokeLinejoin="round">
-        <circle cx="12" cy="12" r="9" />
-        <path d="M12 7v10M8 9.5c1.5 1 2.5 1 4 0s2.5-1 4 0M8 14.5c1.5-1 2.5-1 4 0s2.5 1 4 0" />
+        <path d="M3.5 6c2.3 2.1 4.4 2.1 6 .3M20.5 6c-2.3 2.1-4.4 2.1-6 .3M9.5 6.3L12 4.5l2.5 1.8" />
+        <line x1="12" y1="6" x2="12" y2="15.5" />
+        <circle cx="12" cy="19" r="3.3" />
+        <path d="M8.7 19h6.6M12 15.7c-1.5 1.5-1.5 5.1 0 6.6c1.5-1.5 1.5-5.1 0-6.6z" />
       </svg>
     ),
   },

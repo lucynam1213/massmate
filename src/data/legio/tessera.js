@@ -218,7 +218,7 @@ export const TESSERA_TEXTS = [
     sourceStatus: 'verified' },
   { id: 'ros-decade-4', section: 'rosary', subsection: 'Decade Prayers', subsectionKo: '십단 기도', speaker: 'all', iconType: 'combined', order: order(),
     english: 'O my Jesus, forgive us our sins, save us from the fires of hell, and lead all souls to Heaven, especially those most in need of Thy mercy. Amen.',
-    korean: '오 나의 예수님, 저희 죄를 용서하시고 저희를 지옥불에서 구하시어 모든 영혼을, 특히 자비가 가장 필요한 영혼을 천국으로 이끌어 주소서. 아멘.',
+    korean: '예수님, 저희 죄를 용서하시며 저희를 지옥 불에서 구하시고 연옥 영혼을 돌보시며 가장 버림받은 영혼을 돌보소서.',
     sourceStatus: 'verified', note: 'The Fatima Prayer.' },
 
   // ── Hail, Holy Queen / 성모찬송 (Salve Regina) ───────────────────────────
